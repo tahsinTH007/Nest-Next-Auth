@@ -18,6 +18,9 @@ export class PrismaService
 
   async onModuleInit() {
     await this.$connect();
+    // The pg adapter connects lazily, so run a real query to fail fast on a
+    // bad DATABASE_URL instead of at the first request.
+    await this.$queryRaw`SELECT 1`;
   }
 
   async onModuleDestroy() {
