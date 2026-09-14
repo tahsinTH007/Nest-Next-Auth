@@ -1,9 +1,21 @@
-datasource db {
-    provider = "postgresql"
-}
+// Prisma schema. Docs: https://pris.ly/d/prisma-schema
+// The database URL lives in prisma.config.ts (read from DATABASE_URL in .env).
 
 generator client {
-    provider     = "prisma-client"
-    output       = "../src/generated/prisma"
-    moduleFormat = "cjs"
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String // store a hash (bcrypt/argon2), never the plain text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
