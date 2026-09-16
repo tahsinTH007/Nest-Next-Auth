@@ -27,6 +27,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "argon2": "^0.45.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1"
   }
